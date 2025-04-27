@@ -1,4 +1,5 @@
 # QGISMCP - QGIS Model Context Protocol Integration
+[![smithery badge](https://smithery.ai/badge/@jjsantos01/qgis_mcp)](https://smithery.ai/server/@jjsantos01/qgis_mcp)
 
 QGISMCP connects [QGIS](https://qgis.org/) to [Claude AI](https://claude.ai/chat) through the Model Context Protocol (MCP), allowing Claude to directly interact with and control QGIS. This integration enables prompt assisted project creation, layer loading, code execution and more.
 
@@ -20,6 +21,14 @@ The system consists of two main components:
 2. **[MCP Server](/src/qgis_mcp/qgis_mcp_server.py)**: A Python server that implements the Model Context Protocol and connects to the QGIS plugin.
 
 ## Installation
+
+### Installing via Smithery
+
+To install QGIS Model Context Protocol Integration for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@jjsantos01/qgis_mcp):
+
+```bash
+npx -y @smithery/cli install @jjsantos01/qgis_mcp --client claude
+```
 
 ### Prerequisites
 
