@@ -1,4 +1,6 @@
 import os
+import io
+import sys
 import json
 import socket
 import traceback
@@ -220,7 +222,20 @@ class QgisMCPServer(QObject):
     
     def execute_code(self, code, **kwargs):
         """Execute arbitrary PyQGIS code"""
+
+        # Capture stdout and stderr
+        stdout_capture = io.StringIO()
+        stderr_capture = io.StringIO()
+        
+        # Store original stdout and stderr
+        original_stdout = sys.stdout
+        original_stderr = sys.stderr
+        
         try:
+            # Redirect stdout and stderr
+            sys.stdout = stdout_capture
+            sys.stderr = stderr_capture
+            
             # Create a local namespace for execution
             namespace = {
                 "qgis": Qgis,
@@ -234,9 +249,31 @@ class QgisMCPServer(QObject):
             
             # Execute the code
             exec(code, namespace)
-            return {"executed": True}
+            
+            # Restore stdout and stderr
+            sys.stdout = original_stdout
+            sys.stderr = original_stderr
+            
+            return {
+                "executed": True,
+                "stdout": stdout_capture.getvalue(),
+                "stderr": stderr_capture.getvalue()
+            }
         except Exception as e:
-            raise Exception(f"Code execution error: {str(e)}")
+            # Generate full traceback
+            error_traceback = traceback.format_exc()
+            
+            # Restore stdout and stderr in case of exception
+            sys.stdout = original_stdout
+            sys.stderr = original_stderr
+            
+            return {
+                "executed": False,
+                "error": str(e),
+                "traceback": error_traceback,
+                "stdout": stdout_capture.getvalue(),
+                "stderr": stderr_capture.getvalue()
+            }
     
     def add_vector_layer(self, path, name=None, provider="ogr", **kwargs):
         """Add a vector layer to the project"""
