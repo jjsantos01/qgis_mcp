@@ -24,7 +24,7 @@ The system consists of two main components:
 ### Prerequisites
 
 - QGIS 3.X (only tested on 3.22)
-- Cloud desktop
+- Claude desktop
 - Python 3.10 or newer
 - uv package manager:
 
@@ -58,11 +58,11 @@ You need to copy the folder [qgis_mcp_plugin](/qgis_mcp_plugin/) and its content
 
 You can get your profile folder in QGIS going to menu `Settings` -> `User profiles` -> `Open active profile folder` Then, go to `Python/plugins` and paste the folder `qgis_mcp_plugin`.
 
-> On a Windows machine the plugins folder is usually located at:
-    `C:\Users\USER\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins` and on MacOS:
-    `~/Library/Application\ Support/QGIS/QGIS3/profiles/default/python/plugins`
+> On a Windows machine the plugins folder is usually located at: `C:\Users\USER\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins` 
 
- Then close QGIS and open it again. Go to the menu option `Plugins` -> `Installing and Managing Plugins`, select the `All` tab and search for "QGIS MCP", then mark the QGIS MCP checkbox.
+and on MacOS: `~/Library/Application\ Support/QGIS/QGIS3/profiles/default/python/plugins`
+
+ Then close QGIS and open it again. Go to the menu option `Plugins` > `Installing and Managing Plugins`, select the `All` tab and search for "QGIS MCP", then mark the QGIS MCP checkbox.
 
 ### Claude for Desktop Integration
 
@@ -91,7 +91,7 @@ Go to `Claude` > `Settings` > `Developer` > `Edit Config` > `claude_desktop_conf
 
 ### Starting the Connection
 
-1. In QGIS, go to `plugins` -> `QGIS MCP`-> `QGIS MCP`
+1. In QGIS, go to `plugins` > `QGIS MCP` > `QGIS MCP`
     ![plugins menu](/assets/imgs/qgis-plugins-menu.png)
 2. Click "Start Server"
     ![start server](/assets/imgs/qgis-mcp-start-server.png)
